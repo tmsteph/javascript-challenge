@@ -1,59 +1,102 @@
-/// from data.js
-var tableData = data;
-console.log(tableData);
+<!DOCTYPE html>
+<html>
 
-// Get a reference to the table body
-var tbody = d3.select("tbody");
+<head>
+  <meta charset="utf-8">
+  <title>UFO Finder</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/superhero/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+  <link rel="stylesheet" href="static/css/style.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
 
-// UFO Sighting values for each column
-tableData.forEach(function(ufoSighting) {
-    console.log(ufoSighting);
-    // Append one table row `tr` for each UFO Sighting object
-    var row = tbody.append("tr");
-
-    // Use `Object.entries` to console.log each UFO Sighting value
-    Object.entries(ufoSighting).forEach(function([key, value]) {
-      console.log(key, value);
-      // Append a cell to the row for each value
-      var cell = row.append("td");
-      cell.text(value);
-    });
-  });
+<body>
 
 
-// Select the button
-var button = d3.select("#filter-btn");
-button.on("click", function() {
 
-    tbody.html("");
+<div class="wrapper">
+          <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                      <div class="navbar-header">
+                          <a class="navbar-brand" href="index.html">UFO Sightings
+                              <img class="nav-ufo" src="static/images/ufo.svg">
+                          </a>
+                      </div>
+                </div>
+          </nav>
 
-    // Select the input date, state, shape and get the raw HTML nodes
-    var inputElement = d3.select("#input");
-    // Get the value property of the input date, state, shape
-    var inputValue = inputElement.property("value");
-    // console.log input value
-    // console.log(inputValue);
-    // Filter Data with datetime equal to input value
-    var filteredData = tableData.filter(sighting => sighting.datetime === inputValue ||
-                                                    sighting.city === inputValue ||
-                                                    sighting.state === inputValue ||
-                                                    sighting.country === inputValue ||
-                                                    sighting.shape === inputValue);
-    // console.log filter values
-    console.log(filteredData);
+          <div class="hero text-center">
+                <h1>UFO Sightings</h1>
+                <p>The Truth is Out There</p>
+          </div>
 
+  <div class="container">
 
-    filteredData.forEach(function(selections) {
+      <div class="row margin-top-50">
+              <div class="col-md-4">
+                    <aside class="filters">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">Filter Search By Category</div>
+                                  <div class="panel-body">
 
-    console.log(selections);
-    // Append one table row `tr` for each UFO Sighting object
-    var row = tbody.append("tr");
-    // Use `Object.entries` to console.log each UFO Sighting value
-    Object.entries(selections).forEach(function([key, value]) {
-        console.log(key, value);
-        // Append a cell to the row for each value
-        var cell = row.append("td");
-        cell.text(value);
-    });
-});
-});
+                                          <form>
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                          <select type="button" class="form-control btn btn-success" data-toggle="dropdown">
+                                                              <option href="#" class="dropdown-item">Date</option>
+                                                              <option href="#" class="dropdown-item">City</option>
+                                                              <option href="#" class="dropdown-item">State</option>
+                                                              <option href="#" class="dropdown-item">Country</option>
+                                                              <option href="#" class="dropdown-item">Shape</option>
+                                                          </select>
+                                                    </div>
+                                                          <input type="text" id="input" class="form-control" placeholder="enter here">
+                                                </div>
+                                          </form>
+
+                                        <button id="filter-btn" type="button" class="btn btn-default">Filter Table</button>
+
+                                  </div>
+                            </div>
+                      </aside>
+
+                  </div>
+
+        <div class="row margin-top-50">
+        <div class="col-md-10">
+    </br>
+                <div id="table-area" class="">
+                        <table id="ufo-table" class="table table-striped">
+                                <thead>
+                                        <tr>
+                                                <th class="table-head">Date</th>
+                                                <th class="table-head">City</th>
+                                                <th class="table-head">State</th>
+                                                <th class="table-head">Country</th>
+                                                <th class="table-head">Shape</th>
+                                                <th class="table-head">Duration</th>
+                                                <th class="table-head">Comments</th>
+                                        </tr>
+                                </thead>
+                                <tbody></tbody>
+                        </table>
+                </div>
+        </div>
+        </div>
+
+  <footer class="footer">
+      <span class="bottom">UFO Sightings</span>
+  </footer>
+
+        </div>
+</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.11.0/d3.js"></script>
+  <script src="static/js/data.js"></script>
+  <script src="static/js/app.js"></script>
+
+</body>
+
+</html>
